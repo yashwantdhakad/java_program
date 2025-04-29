@@ -3,6 +3,7 @@ package example.corejava.collection;
 // Java program to demonstrate the
 // working of a LinkedHashSet
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LinkedHashSetDemo {
 
@@ -21,10 +22,11 @@ public class LinkedHashSetDemo {
         lhs.add("Very helpful");
 
         // Traversing elements
-        Iterator<String> itr = lhs.iterator();
-        while (itr.hasNext()) {
-            System.out.println(itr.next());
-        }
+        new ArrayList<>(lhs).forEach(System.out::println);
+//        Iterator<String> itr = lhs.iterator();
+//        while (itr.hasNext()) {
+//            System.out.println(itr.next());
+//        }
     }
 }
 

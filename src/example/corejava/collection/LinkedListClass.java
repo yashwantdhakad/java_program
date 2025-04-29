@@ -31,7 +31,6 @@ class LinkedListClass {
         System.out.println(ll);
 
         // Printing elements one by one
-        for (int i = 0; i < ll.size(); i++)
-            System.out.print(ll.get(i) + " ");
+        for (Integer integer : ll) System.out.print(integer + " ");
     }
 }

@@ -1,11 +1,16 @@
 package example.corejava.designpatterns;
 
 class SingletonMain {
-    private static SingletonMain instance;
+    private static volatile SingletonMain instance;
+    private SingletonMain() {}
 
-    public static synchronized SingletonMain getInstance() {
+    public static SingletonMain getInstance() {
         if (instance == null) {
-            instance = new SingletonMain();
+            synchronized (SingletonMain.class) {
+                if (instance == null) {
+                    instance = new SingletonMain();
+                }
+            }
         }
         return instance;
     }

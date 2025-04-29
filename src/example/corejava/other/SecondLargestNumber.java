@@ -1,6 +1,8 @@
 package example.corejava.other;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class SecondLargestNumber {
     public static void main(String[] args) {
@@ -8,8 +10,10 @@ public class SecondLargestNumber {
 
         int max = 0;
         int secondMax = 0;
+        System.out.println("==length===="+list.length);
 
         for (int i = 0; i < list.length; i++) {
+            System.out.println("=====list=====" + list[i]);
             if (list[i] > max) {
                 secondMax = max;
                 max = list[i];
@@ -17,15 +21,16 @@ public class SecondLargestNumber {
                 secondMax = list[i];
             }
         }
+        System.out.println("Second large number from custom logic: " + secondMax);
 
         // find second largest number by stream api
         int secondLargest = Arrays.stream(list).sorted().skip(list.length - 2).findFirst().get();
         System.out.println("Second largest is: " + secondLargest);
 
-        int secondLargestSort = Arrays.stream(list).sorted((a, b) -> b - a).skip(1).findFirst().get();
+        int secondLargestSort = Arrays.stream(list).sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
         System.out.println("Second largest second example is: " + secondLargestSort);
 
-        System.out.println("Second large number is: " + secondMax);
+        Arrays.stream(list).sorted().collect(Collectors.toList()).stream().skip(1).findFirst().ifPresent(System.out::println);
 
     }
 }

@@ -1,30 +1,54 @@
 package test;
 
-import java.util.ArrayDeque;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
+interface Shap {
+    public void draw();
+}
+
+class Circle implements Shap {
+    @Override
+    public void draw() {
+        System.out.println("Inside Circle");
+    }
+}
+
+class Rectangle implements Shap {
+    @Override
+    public void draw() {
+        System.out.println("Inside rectangle.");
+    }
+}
+
+class ShapeFactory {
+    private Shap shapeInstance;
+    public Shap getShapeInstance(String shapeType) {
+        if (shapeType.equalsIgnoreCase("Circle")) {
+            shapeInstance = new Circle();
+        } else if (shapeType.equalsIgnoreCase("Rectangle")) {
+            shapeInstance = new Rectangle();
+        }
+        return shapeInstance;
+    }
+}
 
 public class Test {
     public static void main(String[] args) {
-        Queue<String> pqueue = new PriorityQueue<>();
-        pqueue.add("test");
-        pqueue.add("foo");
-        pqueue.add("demo");
-        pqueue.add("another");
-        for(String test : pqueue) {
-            System.out.println("Test item: " + test);
-        }
-        System.out.println("\n");
-        Queue<String> queue = new ArrayDeque<>();
-        queue.add("test");
-        queue.add("foo");
-        queue.add("demo");
-        for(String test : queue) {
-            System.out.println("Test item: " + test);
-        }
+        ShapeFactory shapeFactory = new ShapeFactory();
+        Shap instance = shapeFactory.getShapeInstance("Circle");
+        instance.draw();
+        Shap rectangle = shapeFactory.getShapeInstance("Rectangle");
+        rectangle.draw();
+        String name ="yashwant";
+        Map<Character, Long> map = name.chars().mapToObj(c-> (char) c).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        System.out.println(map);
+
+        String test = "airplane";
+//        Arrays.stream(test.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+//                .entrySet().stream().filter(entry -> entry.getValue() > 1).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
+//        System.out.println("==repetativeCharsMap==="+repetativeCharsMap);
     }
 }

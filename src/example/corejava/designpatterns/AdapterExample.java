@@ -5,7 +5,7 @@ interface Charger {
     void charge();
 }
 
-// Adaptee with a different interface
+// Adapter with a different interface
 class MicroUSBCharger {
     void connectMicroUSB() {
         System.out.println("Charging using Micro-USB.");

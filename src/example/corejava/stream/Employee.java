@@ -1,31 +1,33 @@
 package example.corejava.stream;
 
+import java.time.LocalDate;
+
 class Employee {
-    private int year;
+    private LocalDate joiningDate;
     private double salary;
     private String name;
     private int age;
     private String gender;
 
     // Constructor
-    public Employee(int year, double salary) {
-        this.year = year;
+    public Employee(LocalDate joiningDate, double salary) {
+        this.joiningDate = joiningDate;
         this.salary = salary;
     }
-    public Employee(int year, double salary, String name, String gender, int age) {
-        this.year = year;
+    public Employee(LocalDate joiningDate, double salary, String name, String gender, int age) {
+        this.joiningDate = joiningDate;
         this.salary = salary;
         this.name = name;
         this.age = age;
         this.gender = gender;
     }
 
-    public int getYear() {
-        return year;
+    public LocalDate getJoiningDate() {
+        return joiningDate;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setJoiningDate(LocalDate joiningDate) {
+        this.joiningDate = joiningDate;
     }
 
     public double getSalary() {
@@ -63,7 +65,7 @@ class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "year=" + year +
+                "joiningDate=" + joiningDate +
                 ", salary=" + salary +
                 ", name='" + name + '\'' +
                 ", age=" + age +

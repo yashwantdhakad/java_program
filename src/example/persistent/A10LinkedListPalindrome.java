@@ -1,6 +1,6 @@
 package example.persistent;
 
-public class LinkedListPalindrome {
+public class A10LinkedListPalindrome {
     static class ListNode {
         int value;
         ListNode next;
@@ -11,7 +11,7 @@ public class LinkedListPalindrome {
         }
     }
 
-    public static ListNode reverseNode(ListNode head) {
+    public static ListNode reverseList(ListNode head) {
         ListNode previous = null, next = null, current = head;
         while (current != null) {
             next = current.next;
@@ -23,27 +23,37 @@ public class LinkedListPalindrome {
     }
 
     public static boolean isPalindrome(ListNode head) {
+        // Base cases: empty or single node is a palindrome
         if (head == null || head.next == null) {
             return true;
         }
 
+        // Find the middle of the list using slow and fast pointers
         ListNode slow = head, fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        ListNode secondHalf = reverseNode(slow);
+        // Reverse the second half
+        ListNode secondHalf = reverseList(slow);
         ListNode firstHalf = head;
+        boolean isPalin = true;
+
+        // Compare the first half with the reversed second half
         while (secondHalf != null) {
             if (firstHalf.value != secondHalf.value) {
-                return false;
+                isPalin = false;
+                break;
             }
-            secondHalf = secondHalf.next;
             firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
         }
 
-        return true;
+        // Restore the original list (optional, if needed)
+        reverseList(slow); // Reverses back to original second half
+
+        return isPalin;
     }
 
     public static void printLinkedList(ListNode head) {
@@ -63,5 +73,6 @@ public class LinkedListPalindrome {
 
         printLinkedList(head);
         System.out.println("List is palindrome: " + isPalindrome(head));
+        printLinkedList(head); // Show original list is restored
     }
 }

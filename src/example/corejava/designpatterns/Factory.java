@@ -11,13 +11,6 @@ class Circle implements Shape {
     }
 }
 
-class Rectangle implements Shape {
-    @Override
-    public void draw() {
-        System.out.println("Rectangle class");
-    }
-}
-
 class Square implements Shape {
     @Override
     public void draw() {
@@ -34,8 +27,6 @@ class ShapeFactory {
         }
         if (type.equalsIgnoreCase("CIRCLE")) {
             instanceType = new Circle();
-        } else if (type.equalsIgnoreCase("RECTANGLE")) {
-            instanceType = new Rectangle();
         } else if (type.equalsIgnoreCase("SQUARE")) {
             instanceType = new Square();
         }
@@ -47,9 +38,6 @@ public class Factory {
         ShapeFactory shapeFactory = new ShapeFactory();
         Shape circle = shapeFactory.getInstanceType("CIRCLE");
         circle.draw();
-
-        Shape rectangle = shapeFactory.getInstanceType("RECTANGLE");
-        rectangle.draw();
 
         Shape square = shapeFactory.getInstanceType("Square");
         square.draw();

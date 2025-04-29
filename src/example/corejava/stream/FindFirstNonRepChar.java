@@ -1,15 +1,20 @@
 package example.corejava.stream;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
+// Program to find the first non-repeating character from string.
 public class FindFirstNonRepChar {
     public static void main(String[] args) {
-        String name = "ashwant";
-        Map<Object, Integer> integerMap = name.chars().mapToObj(c -> (char) c).collect(LinkedHashMap<Object, Integer>::new, (map, c) -> map.put(c, map.getOrDefault(c, 0) + 1), LinkedHashMap<Object, Integer>::putAll);
-        Object ch = integerMap.entrySet().stream().filter(entry -> entry.getValue() == 1).findFirst().get().getKey();
-        System.out.println(ch);
-
+        String name = "yashwant";
+        Map<Character, Long> collectMap = name.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> (char) c, LinkedHashMap::new, Collectors.counting()));
+        Optional<Map.Entry<Character, Long>> first = collectMap.entrySet().stream().filter(entry -> entry.getValue() == 1).findFirst();
+        System.out.println(first.get().getKey());
+        LinkedHashMap<String, Long> collect = Arrays.stream(name.split("")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+        System.out.println("====collect===="+collect);
     }
 }

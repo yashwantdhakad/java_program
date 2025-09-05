@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class PersonStreamExample {
 
-    private static int count = 1;
-    private static int getCountAndIncrement() {
-        return count++;
-    }
-
     public static void main(String[] args) {
+        AtomicInteger atomicInteger = new AtomicInteger();
         List<Person> personList = Arrays.asList(
                 new Person("Yashwant", "Neemuch"),
                 new Person("Aman", "Indore"),
@@ -22,11 +19,16 @@ public class PersonStreamExample {
         );
         System.out.println(personList);
         List<Person> filteredList = personList.stream()
-//                .sorted((p1, p2) -> p1.getName().compareTo(p2.getName()))
                 .sorted(Comparator.comparing(Person::getName))
-                .peek(person -> person.setRollNum(getCountAndIncrement()))
+                .peek(person -> person.setRollNum(atomicInteger.incrementAndGet()))
                 .collect(Collectors.toList());
         System.out.println(filteredList);
+
+//        List<Person> filteredList1 = personList.stream()
+//                .sorted(Comparator.comparing(Person::getName))
+//                .map(person -> { person.setRollNum(atomicInteger.incrementAndGet()); return  person;})
+//                .collect(Collectors.toList());
+//        System.out.println(filteredList1);
     }
 }
 

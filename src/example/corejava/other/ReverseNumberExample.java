@@ -1,9 +1,6 @@
 package example.corejava.other;
 
-import com.sun.xml.internal.fastinfoset.util.CharArray;
-
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.stream.IntStream;
 
 public class ReverseNumberExample {

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class SecondLargestNumber {
     public static void main(String[] args) {
-        Integer list[] = {1, 4, 3, 5, 8, 2, 9};
+        Integer[] list = {1, 4, 3, 5, 8, 2, 9};
 
         int max = 0;
         int secondMax = 0;
@@ -30,7 +30,7 @@ public class SecondLargestNumber {
         int secondLargestSort = Arrays.stream(list).sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
         System.out.println("Second largest second example is: " + secondLargestSort);
 
-        Arrays.stream(list).sorted().collect(Collectors.toList()).stream().skip(1).findFirst().ifPresent(System.out::println);
+        Arrays.stream(list).sorted().toList().stream().skip(1).findFirst().ifPresent(System.out::println);
 
     }
 }

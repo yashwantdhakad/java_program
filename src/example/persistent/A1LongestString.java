@@ -41,7 +41,7 @@ public class A1LongestString {
         System.out.println("Longest substring with " + k + " distinct chars: " + longestSubstringWithKDistinct(s, k));
 
         // Additional test cases
-        System.out.println(longestSubstringWithKDistinct("aaaa", 1)); // "aaaa"
+        System.out.println(longestSubstringWithKDistinct("aaaa", 2)); // "aaaa"
         System.out.println(longestSubstringWithKDistinct("abc", 5));  // "abc"
         System.out.println(longestSubstringWithKDistinct("", 2));    // ""
     }

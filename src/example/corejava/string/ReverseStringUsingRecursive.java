@@ -12,9 +12,9 @@ public class ReverseStringUsingRecursive {
         String s="Hello";
         System.out.println("==original string: " + s);
         System.out.println("====reverse string: " + reverseString(s));
-        String reverseString = "";
+        StringBuilder reverseString = new StringBuilder();
         for (int i=s.length()-1; i>=0 ;i--) {
-            reverseString += s.charAt(i);
+            reverseString.append(s.charAt(i));
         }
         System.out.println("====reverse str==="+ reverseString);
         String str = "";

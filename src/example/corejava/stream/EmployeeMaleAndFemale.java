@@ -35,12 +35,12 @@ public class EmployeeMaleAndFemale {
         sortedEmployeeList.forEach(System.out::println);
 
         List<String> collect1 = employeeList.stream()
-                .sorted(Comparator.comparingDouble(Employee::getSalary))
+                .sorted(Comparator.comparingDouble(Employee::getSalary).thenComparing(Employee::getName))
                 .map(Employee::getName)
                 .collect(Collectors.toList());
-        System.out.println("=====collect1=="+collect1);
+        System.out.println("=====Sort the emp with salary and get names=="+collect1);
 
-        double average = employeeList.stream().collect(Collectors.summarizingDouble(Employee::getSalary)).getAverage();
+        double average = employeeList.stream().collect(Collectors.averagingDouble(Employee::getSalary));
         System.out.println("======average====="+average);
     }
 }

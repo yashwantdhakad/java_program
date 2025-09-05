@@ -61,6 +61,7 @@ public class MultipleExample {
         // 9. Joining the list of string into string
         List<String> list = Arrays.asList("yashwant", "aman", "rohit");
         String stringFromList = list.stream().collect(Collectors.joining(", "));
+        String stringFromList1 = String.join(", ", list);
         // System.out.println("===stringFromList===" + stringFromList);
     }
 }

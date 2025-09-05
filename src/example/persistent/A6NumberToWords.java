@@ -13,19 +13,19 @@ public class A6NumberToWords {
         if (num == 0) return "Zero";
 
         int i = 0;
-        String words = "";
+        StringBuilder words = new StringBuilder();
 
         while (num > 0) {
             if (num % 1000 != 0) {
                 String groupWords = helper((int) (num % 1000));
-                words = groupWords + (groupWords.isEmpty() ? "" : thousands[i] + " ") + words;
+                words.insert(0, groupWords + (groupWords.isEmpty() ? "" : thousands[i] + " "));
             }
             num /= 1000;
             i++;
             if (i >= thousands.length) throw new IllegalArgumentException("Number too large");
         }
 
-        return words.trim();
+        return words.toString().trim();
     }
 
     // Helper function to convert numbers below 1000 into words
@@ -34,8 +34,8 @@ public class A6NumberToWords {
         if (num < 20) return belowTwenty[num];
         else if (num < 100) {
             String tensPart = tens[num / 10];
-            String onesPart = helper(num % 10);
-            return tensPart + (onesPart.isEmpty() ? "" : " " + onesPart);
+            String remainder = helper(num % 10);
+            return tensPart + (remainder.isEmpty() ? "" : " " + remainder);
         } else {
             String hundredsPart = belowTwenty[num / 100] + " Hundred";
             String remainder = helper(num % 100);

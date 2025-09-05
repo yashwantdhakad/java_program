@@ -28,9 +28,8 @@ public class A2FruitBasketProblem {
             }
 
             // Update maxFruits and longestStart
-            int currentLength = right - left + 1;
-            if (currentLength > maxFruits) {
-                maxFruits = currentLength;
+            if (right - left + 1 > maxFruits) {
+                maxFruits = right - left + 1;
                 longestStart = left;
             }
             right++;

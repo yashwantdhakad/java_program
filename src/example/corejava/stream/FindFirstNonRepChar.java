@@ -14,7 +14,9 @@ public class FindFirstNonRepChar {
         Map<Character, Long> collectMap = name.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(c -> (char) c, LinkedHashMap::new, Collectors.counting()));
         Optional<Map.Entry<Character, Long>> first = collectMap.entrySet().stream().filter(entry -> entry.getValue() == 1).findFirst();
         System.out.println(first.get().getKey());
-        LinkedHashMap<String, Long> collect = Arrays.stream(name.split("")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
-        System.out.println("====collect===="+collect);
+
+        Optional<Map.Entry<String, Long>> first1 = Arrays.stream(name.split("")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+                .entrySet().stream().filter(entry -> entry.getValue() == 1).findFirst();
+        System.out.println("====collect===="+first1);
     }
 }

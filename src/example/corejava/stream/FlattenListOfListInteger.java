@@ -1,6 +1,7 @@
 package example.corejava.stream;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,7 +13,7 @@ public class FlattenListOfListInteger {
                 Arrays.asList(4, 5, 6),
                 Arrays.asList(7, 8, 9)
         );
-        List<Integer> flatList = intList.stream().flatMap(list -> list.stream()).collect(Collectors.toList());
+        List<Integer> flatList = intList.stream().flatMap(Collection::stream).toList();
         System.out.println(flatList);
     }
 }
